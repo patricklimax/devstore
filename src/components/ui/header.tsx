@@ -1,10 +1,28 @@
+"use client"
+
 import { HomeIcon, ListOrderedIcon, LogInIcon, LogOutIcon, MenuIcon, PercentIcon, ShoppingCartIcon } from 'lucide-react';
 import { Button } from './button';
 import { Card } from './card';
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from './sheet';
+import { signIn, signOut, useSession } from 'next-auth/react';
+import { Avatar } from './avatar';
+import Image from 'next/image'
+import { AvatarFallback, AvatarImage } from '@radix-ui/react-avatar';
+import { Separator } from '@radix-ui/react-separator';
 
 const Header = () => {
-  return ( 
+  const { status, data } = useSession();
+
+  const handleLogInClick = async () => {
+    await signIn()
+  }
+
+  const handleLogOutClick = async () => {
+    await signOut()
+  }
+
+
+  return (
     <Card className='flex items-center justify-between p-4'>
       <Sheet>
         <SheetTrigger asChild>
@@ -18,11 +36,40 @@ const Header = () => {
             Menu
           </SheetHeader>
 
+          {status === 'authenticated' && data?.user && (
+            <div className='flex items-center gap-4 p-2 mt-2 border rounded'>
+              <Avatar>
+                <AvatarFallback>
+                  {data.user.name?.[0].toUpperCase()}
+                </AvatarFallback>
+
+                {data.user.image && (<AvatarImage src={data.user.image} />)}
+              </Avatar>
+
+              <p className='font-semibold'>{data.user.name}</p>
+            </div>
+          )}
+
           <div className='py-4 flex flex-col gap-4'>
-            <Button variant='outline' className='w-full justify-start rounded gap-2 items-center'>
-              <LogInIcon size={16}/>
-              Fazer login
-            </Button>
+            {status === 'unauthenticated' &&
+              <Button
+                onClick={handleLogInClick}
+                variant='outline'
+                className='w-full justify-start rounded gap-2 items-center'>
+                <LogInIcon size={16} />
+                Fazer login
+              </Button>
+            }
+
+            {status === 'authenticated' &&
+              <Button
+                onClick={handleLogOutClick}
+                variant='outline'
+                className='w-full justify-start rounded gap-2 items-center'>
+                <LogOutIcon size={16} />
+                Fazer Logout
+              </Button>
+            }
 
             <Button variant='outline' className='w-full justify-start rounded gap-2 items-center'>
               <HomeIcon size={16} />
@@ -34,10 +81,7 @@ const Header = () => {
               Ofertas
             </Button>
 
-            <Button variant='outline' className='w-full justify-start rounded gap-2 items-center'>
-              <LogOutIcon size={16} />
-              Fazer Logout
-            </Button>
+
 
             <Button variant='outline' className='w-full justify-start rounded gap-2 items-center'>
               <ListOrderedIcon size={16} />
@@ -47,12 +91,12 @@ const Header = () => {
           </div>
 
 
-          
+
 
         </SheetContent>
       </Sheet>
 
-      
+
 
       <h1 className='font-semibold text-xl'>
         <span className='text-primary'>Developer</span> Store
@@ -62,7 +106,7 @@ const Header = () => {
         <ShoppingCartIcon />
       </Button>
     </Card>
-   );
+  );
 }
- 
+
 export default Header;
