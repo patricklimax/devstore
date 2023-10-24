@@ -9,7 +9,7 @@ interface ProductItemProps {
 
 const ProductItem = ({ product }: ProductItemProps) => {
   return (
-    <div className='flex flex-col gap-4'>
+    <div className='flex flex-col gap-2'>
       <div className='bg-accent rounded h-[170px] w-[170px] flex items-center justify-center relative'>
         <Image
           src={product.imageUrls[0]}
@@ -31,23 +31,22 @@ const ProductItem = ({ product }: ProductItemProps) => {
         }
       </div>
 
-
       <div className='w-[170px] px-2 mb-2'>
         <p className='text-sm truncate'>{product.name}</p>
 
         <div className='flex items-center justify-between'>
           {product.discountPercentage > 0 ?
             <>
-              <p className='font-semibold text-sm'>
-                R$ {product.totalPrice.toFixed(2)}
+              <p className='font-semibold text-xs'>
+                {(product.totalPrice).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
               </p>
               <p className='font-semibold text-xs line-through opacity-75'>
-                R$ {Number(product.basePrice).toFixed(2)}
+                {Number(product.basePrice).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
               </p>
             </>
             :
-            <p className='font-semibold text-sm'>
-              R$ {Number(product.basePrice).toFixed(2)}
+            <p className='font-semibold text-xs'>
+              {Number(product.basePrice).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
             </p>
           }
         </div>
