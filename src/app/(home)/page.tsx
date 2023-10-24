@@ -31,8 +31,8 @@ export default async function Home() {
   })
   
   return (
-    <main className='pb-8'>
-      <div className='flex flex-col md:flex-row gap-4 p-4 md:px-0'>
+    <main className='pt-4 pb-8'>
+      <div className='flex flex-col md:flex-row gap-4 px-4 md:px-0'>
         <Categories />
         <div className='w-full'>
           <PromoBanner
