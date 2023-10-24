@@ -1,9 +1,9 @@
 'use client'
 import { ProductWithTotalPrice } from '@/helpers/product'
-import { Badge } from '@/components/ui/badge';
-import { ArrowDownIcon, MinusIcon, PlusIcon, TruckIcon } from 'lucide-react';
+import { MinusIcon, PlusIcon, TruckIcon } from 'lucide-react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import DiscountBadge from '@/components/ui/discount-badge';
 
 interface ProductInfoProps {
   product: Pick<ProductWithTotalPrice,
@@ -28,8 +28,6 @@ const ProductInfo = ({ product: {
     setQuantity((prev) => prev + 1);
   }
 
-
-
   return (
     <div className='flex flex-col'>
       <p className='text-lg'>{name}</p>
@@ -40,10 +38,7 @@ const ProductInfo = ({ product: {
         </p>
 
         {discountPercentage > 0 &&
-          <Badge className='px-2 py-1'>
-            <ArrowDownIcon size={14} />
-            {discountPercentage}%
-          </Badge>
+          <DiscountBadge>{discountPercentage}</DiscountBadge>
         }
 
         {discountPercentage > 0 &&
