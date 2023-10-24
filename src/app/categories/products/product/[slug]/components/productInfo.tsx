@@ -70,7 +70,9 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
             <PlusIcon size={16} />
           </Button>
         </div>
-        <Button className='rounded uppercase font-semibold'>
+        <Button
+          onClick={handleAddToCartClick}
+          className='rounded uppercase font-semibold'>
           Adiconar ao Carrinho
         </Button>
       </div>
