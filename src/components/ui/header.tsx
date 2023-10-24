@@ -1,6 +1,6 @@
 "use client"
 
-import { HomeIcon, ListOrderedIcon, LogInIcon, LogOutIcon, MenuIcon, PercentIcon, ShoppingCartIcon } from 'lucide-react';
+import { HomeIcon, LayoutGridIcon, LogInIcon, LogOutIcon, MenuIcon, PercentIcon, ShoppingCartIcon } from 'lucide-react';
 import { Button } from './button';
 import { Card } from './card';
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTrigger } from './sheet';
@@ -82,8 +82,8 @@ const Header = () => {
             <SheetClose asChild>
               <Link href={"/categories"}>
                 <Button variant='outline' className='w-full justify-start rounded gap-2 items-center'>
-                  <ListOrderedIcon size={16} />
-                  Catálogo
+                  <LayoutGridIcon size={16} />
+                  Categorias
                 </Button>
               </Link>
             </SheetClose>
