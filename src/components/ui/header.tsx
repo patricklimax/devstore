@@ -8,6 +8,7 @@ import { signIn, signOut, useSession } from 'next-auth/react';
 import { Avatar } from './avatar';
 import { AvatarFallback, AvatarImage } from '@radix-ui/react-avatar';
 import Link from 'next/link';
+import Cart from './cart';
 
 const Header = () => {
   const { status, data } = useSession();
@@ -93,16 +94,24 @@ const Header = () => {
           </div>
         </SheetContent>
       </Sheet>
-      
+
       <Link href={"/"}>
         <h1 className='font-semibold text-xl'>
           <span className='text-primary'>Developer</span> Store
         </h1>
       </Link>
 
-      <Button size='icon' variant='outline' className='rounded'>
-        <ShoppingCartIcon />
-      </Button>
+      <Sheet>
+        <SheetTrigger asChild>
+          <Button size='icon' variant='outline' className='rounded'>
+            <ShoppingCartIcon />
+          </Button>
+        </SheetTrigger>
+
+        <SheetContent side='right'>
+          <Cart/>
+        </SheetContent>
+      </Sheet>
     </Card>
   );
 }
