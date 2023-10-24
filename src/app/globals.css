@@ -76,3 +76,19 @@
   border-radius: 20px;       /* roundness of the scroll thumb */
   border: 2px solid #21BD55;  /* creates padding around scroll thumb */
 }
+
+.scrollProductList::-webkit-scrollbar {
+  width: 5px; 
+  height: 10px;              /* width of the entire scrollbar */
+}
+
+.scrollProductList::-webkit-scrollbar-track {
+  background: #292524;        /* color of the tracking area */
+  border-radius: .20rem;       /* roundness of the scroll thumb */
+}
+
+.scrollProductList::-webkit-scrollbar-thumb {
+  background-color: #21BD55;    /* color of the scroll thumb */
+  border-radius: .25rem;       /* roundness of the scroll thumb */
+  border: 3px solid #292524;  /* creates padding around scroll thumb */
+}
