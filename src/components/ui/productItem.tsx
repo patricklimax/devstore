@@ -9,8 +9,8 @@ interface ProductItemProps {
 
 const ProductItem = ({ product }: ProductItemProps) => {
   return (
-    <div className='flex flex-col gap-2'>
-      <div className='bg-accent rounded h-[170px] w-[170px] flex items-center justify-center relative'>
+    <div className='flex flex-col items-center justify-between w-full'>
+      <div className='bg-accent rounded-t h-[170px] w-[170px] max-w-full flex items-center justify-center relative'>
         <Image
           src={product.imageUrls[0]}
           alt={product.name}
@@ -31,7 +31,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
         }
       </div>
 
-      <div className='w-[170px] px-2 mb-2'>
+      <div className='max-w-full p-2 bg-popover w-[170px] rounded-b'>
         <p className='text-sm truncate'>{product.name}</p>
 
         <div className='flex items-center justify-between'>
