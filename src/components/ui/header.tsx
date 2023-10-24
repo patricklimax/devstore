@@ -68,11 +68,14 @@ const Header = () => {
                 Fazer Logout
               </Button>
             }
-
-            <Button variant='outline' className='w-full justify-start rounded gap-2 items-center'>
-              <HomeIcon size={16} />
-              Home
-            </Button>
+            <SheetClose asChild>
+              <Link href={"/"}>
+                <Button variant='outline' className='w-full justify-start rounded gap-2 items-center'>
+                  <HomeIcon size={16} />
+                  Home
+                </Button>
+              </Link>
+            </SheetClose>
 
             <Button variant='outline' className='w-full justify-start rounded gap-2 items-center'>
               <PercentIcon size={16} />
@@ -90,10 +93,12 @@ const Header = () => {
           </div>
         </SheetContent>
       </Sheet>
-
-      <h1 className='font-semibold text-xl'>
-        <span className='text-primary'>Developer</span> Store
-      </h1>
+      
+      <Link href={"/"}>
+        <h1 className='font-semibold text-xl'>
+          <span className='text-primary'>Developer</span> Store
+        </h1>
+      </Link>
 
       <Button size='icon' variant='outline' className='rounded'>
         <ShoppingCartIcon />
