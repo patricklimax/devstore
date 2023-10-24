@@ -13,7 +13,7 @@ const CategoriesPage = async () => {
           <p className='text-primary'>
             <LayoutGridIcon size={16} />
           </p>
-          Catálogo
+          Categorias
         </Badge>
       </div>
 
