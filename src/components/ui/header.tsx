@@ -6,9 +6,7 @@ import { Card } from './card';
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from './sheet';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { Avatar } from './avatar';
-import Image from 'next/image'
 import { AvatarFallback, AvatarImage } from '@radix-ui/react-avatar';
-import { Separator } from '@radix-ui/react-separator';
 
 const Header = () => {
   const { status, data } = useSession();
@@ -21,9 +19,8 @@ const Header = () => {
     await signOut()
   }
 
-
   return (
-    <Card className='flex items-center justify-between p-4'>
+    <Card className='flex items-center justify-between p-4 rounded-b'>
       <Sheet>
         <SheetTrigger asChild>
           <Button size='icon' variant='outline' className='rounded'>
@@ -36,7 +33,7 @@ const Header = () => {
             Menu
           </SheetHeader>
 
-          {status === 'authenticated' && data?.user && (
+          {status === 'authenticated' && data?.user &&
             <div className='flex items-center gap-4 p-2 mt-2 border rounded'>
               <Avatar>
                 <AvatarFallback>
@@ -48,7 +45,7 @@ const Header = () => {
 
               <p className='font-semibold'>{data.user.name}</p>
             </div>
-          )}
+          }
 
           <div className='py-4 flex flex-col gap-4'>
             {status === 'unauthenticated' &&
@@ -81,22 +78,13 @@ const Header = () => {
               Ofertas
             </Button>
 
-
-
             <Button variant='outline' className='w-full justify-start rounded gap-2 items-center'>
               <ListOrderedIcon size={16} />
               Catálogo
             </Button>
-
           </div>
-
-
-
-
         </SheetContent>
       </Sheet>
-
-
 
       <h1 className='font-semibold text-xl'>
         <span className='text-primary'>Developer</span> Store
