@@ -17,7 +17,7 @@ const ProductImages = ({ imageUrls, name }: ProductImagesPros) => {
 
   return (
     <div className='flex flex-col gap-4'>
-      <div className='flex flex-col gap-4'>
+      {/* <div className='flex flex-col gap-4'> */}
         <div className='bg-accent h-[380px] w-full flex items-center justify-center'>
           <Image
             src={currentImage}
@@ -53,13 +53,7 @@ const ProductImages = ({ imageUrls, name }: ProductImagesPros) => {
             </button>
           )}
         </div>
-      </div>
-
-      <div>
-        
-      </div>
-
-
+      {/* </div> */}
     </div>
   );
 }
