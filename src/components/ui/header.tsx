@@ -9,6 +9,7 @@ import { Avatar } from './avatar';
 import { AvatarFallback, AvatarImage } from '@radix-ui/react-avatar';
 import Link from 'next/link';
 import Cart from './cart';
+import { Separator } from './separator';
 
 const Header = () => {
   const { status, data } = useSession();
@@ -36,7 +37,7 @@ const Header = () => {
           </SheetHeader>
 
           {status === 'authenticated' && data?.user &&
-            <div className='flex items-center gap-4 p-2 mt-2 border rounded'>
+            <div className='flex items-center gap-4 p-4 px-2 rounded'>
               <Avatar>
                 <AvatarFallback>
                   {data.user.name?.[0].toUpperCase()}
@@ -49,6 +50,7 @@ const Header = () => {
             </div>
           }
 
+          <Separator />
           <div className='py-4 flex flex-col gap-4'>
             {status === 'unauthenticated' &&
               <Button
@@ -108,8 +110,8 @@ const Header = () => {
           </Button>
         </SheetTrigger>
 
-        <SheetContent side='right'>
-          <Cart/>
+        <SheetContent side='right' className='w-11/12'>
+          <Cart />
         </SheetContent>
       </Sheet>
     </Card>

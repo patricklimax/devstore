@@ -46,8 +46,8 @@ const CartItem = ({ product }: CartItemProps) => {
         <div className='flex flex-col'>
           <p className='text-xs'>{product.name}</p>
 
-          <div className='flex items-center gap-2'>
-            <p className='text-sm font-semibold'>R$ {product.totalPrice.toFixed(2)}</p>
+          <div className='flex items-center gap-2 '>
+            <p className='text-xs font-semibold'>R$ {product.totalPrice.toFixed(2)}</p>
 
             {product.discountPercentage > 0 &&
               <p className='opacity-75 line-through text-xs'>
@@ -55,22 +55,22 @@ const CartItem = ({ product }: CartItemProps) => {
               </p>}
           </div>
 
-          <div className='flex items-center gap-2'>
+          <div className='flex items-center gap-2 mt-3'>
             <Button
               onClick={handleDecreaseProductQuantity}
-              className='rounded w-8 h-8'
+              className='rounded w-6 h-6'
               size={'icon'}
               variant={'outline'}>
               <MinusIcon size={12} />
             </Button>
 
-            <span className='bg-accent h-8 w-8 max-h-full flex items-center justify-center rounded'>
+            <span className='bg-accent w-6 h-6 max-h-full text-sm flex items-center justify-center rounded'>
               {product.quantity}
             </span>
 
             <Button
               onClick={handleIncreaseProductQuantity}
-              className='rounded w-8 h-8'
+              className='rounded w-6 h-6'
               size={'icon'}
               variant={'outline'}>
               <PlusIcon size={12} />
@@ -83,8 +83,8 @@ const CartItem = ({ product }: CartItemProps) => {
         onClick={handleRemoveProductFromCart}
         size={'icon'}
         variant={'destructive'}
-        className='rounded'>
-        <TrashIcon size={16} />
+        className='rounded w-8 h-8'>
+        <TrashIcon size={14} />
       </Button>
     </div>
   );
