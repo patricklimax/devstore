@@ -9,9 +9,22 @@ import { ScrollArea } from './scroll-area';
 import { Button } from './button';
 import Link from 'next/link';
 import { SheetClose } from './sheet';
+import { createCheckout } from '@/actions/checkout';
+import { loadStripe } from '@stripe/stripe-js';
 
 const Cart = () => {
   const { products, subtotal, total, totalDiscount } = useContext(CartContext);
+
+  const hadleFinishPurchaseClick = async () => {
+    const chechout = await createCheckout(products)
+
+    const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY)
+
+    stripe?.redirectToCheckout({
+      sessionId: chechout.id
+    })
+  }
+
   return (
     <div className='flex flex-col gap-4 h-full'>
       <Badge className='w-fit gap-2 text-base uppercase rounded py-1.5' variant={'outline'}>
@@ -77,7 +90,9 @@ const Cart = () => {
           </div>
 
           <div>
-            <Button className='uppercase rounded font-bold w-full'>
+            <Button
+            onClick={hadleFinishPurchaseClick}
+            className='uppercase rounded font-bold w-full'>
               Finalizar compra
             </Button>
           </div>
