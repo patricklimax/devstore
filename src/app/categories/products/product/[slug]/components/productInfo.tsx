@@ -73,7 +73,7 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
         <Button
           onClick={handleAddToCartClick}
           className='rounded uppercase font-semibold'>
-          Adiconar ao Carrinho
+          Adicionar ao Carrinho
         </Button>
       </div>
 
@@ -85,7 +85,7 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
       <Button
         onClick={handleAddToCartClick}
         className='mt-8 rounded uppercase font-semibold'>
-        Adiconar ao Carrinho
+        Adicionar ao Carrinho
       </Button>
 
       <div className='bg-accent flex justify-between items-center p-4 mt-8 rounded'>
