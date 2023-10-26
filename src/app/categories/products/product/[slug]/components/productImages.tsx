@@ -16,9 +16,9 @@ const ProductImages = ({ imageUrls, name }: ProductImagesPros) => {
   }
 
   return (
-    <div className='flex flex-col gap-4'>
+    <div className='flex flex-col gap-4 md:relative h-96 min-h-full'>
       {/* <div className='flex flex-col gap-4'> */}
-        <div className='bg-accent h-[380px] w-full flex items-center justify-center'>
+        <div className='bg-accent h-full w-full flex items-center justify-center rounded'>
           <Image
             src={currentImage}
             alt={name}
@@ -32,12 +32,12 @@ const ProductImages = ({ imageUrls, name }: ProductImagesPros) => {
           />
         </div>
 
-        <div className='flex gap-4 items-center justify-center'>
+      <div className='flex md:flex-col gap-4 items-center justify-center md:absolute md:left-8 md:top-8'>
           {imageUrls.map(imageUrl =>
             <button
               onClick={() => handleImageClick(imageUrl)}
               key={imageUrl}
-              className={`flex h-[85px] w-[85px] items-center justify-center rounded bg-accent ${imageUrl === currentImage && 'border-2 border-primary'}`}
+              className={`flex h-[85px] w-[85px] md:h-[65px] md:w-[65px] items-center justify-center rounded bg-accent md:bg-background  ${imageUrl === currentImage && 'border-2 border-primary'}`}
             >
               <Image
                 src={imageUrl}

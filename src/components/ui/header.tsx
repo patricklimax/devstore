@@ -24,88 +24,99 @@ const Header = () => {
 
   return (
     <Card className='flex items-center justify-between p-4 rounded-b'>
-      <Sheet>
-        <SheetTrigger asChild>
-          <Button size='icon' variant='outline' className='rounded'>
-            <MenuIcon />
-          </Button>
-        </SheetTrigger>
+      <div className='flex md:hidden'>
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button size='icon' variant='outline' className='rounded'>
+              <MenuIcon />
+            </Button>
+          </SheetTrigger>
 
-        <SheetContent side='left'>
-          <SheetHeader className='text-left text-lg font-semibold'>
-            Menu
-          </SheetHeader>
+          <SheetContent side='left'>
+            <SheetHeader className='text-left text-lg font-semibold'>
+              Menu
+            </SheetHeader>
 
-          {status === 'authenticated' && data?.user &&
-            <div className='flex items-center gap-4 p-4 px-2 rounded'>
-              <Avatar>
-                <AvatarFallback>
-                  {data.user.name?.[0].toUpperCase()}
-                </AvatarFallback>
+            {status === 'authenticated' && data?.user &&
+              <div className='flex items-center gap-4 p-4 px-2 rounded'>
+                <Avatar>
+                  <AvatarFallback>
+                    {data.user.name?.[0].toUpperCase()}
+                  </AvatarFallback>
 
-                {data.user.image && (<AvatarImage src={data.user.image} />)}
-              </Avatar>
+                  {data.user.image && (<AvatarImage src={data.user.image} />)}
+                </Avatar>
 
-              <p className='font-semibold'>{data.user.name}</p>
+                <p className='font-semibold'>{data.user.name}</p>
+              </div>
+            }
+
+            <Separator />
+            <div className='py-4 flex flex-col gap-4'>
+              {status === 'unauthenticated' &&
+                <Button
+                  onClick={handleLogInClick}
+                  variant='outline'
+                  className='w-full justify-start rounded gap-2 items-center'>
+                  <LogInIcon size={16} />
+                  Fazer login
+                </Button>
+              }
+
+              {status === 'authenticated' &&
+                <Button
+                  onClick={handleLogOutClick}
+                  variant='outline'
+                  className='w-full justify-start rounded gap-2 items-center'>
+                  <LogOutIcon size={16} />
+                  Fazer Logout
+                </Button>
+              }
+              <SheetClose asChild>
+                <Link href={"/"}>
+                  <Button variant='outline' className='w-full justify-start rounded gap-2 items-center'>
+                    <HomeIcon size={16} />
+                    Home
+                  </Button>
+                </Link>
+              </SheetClose>
+
+              <SheetClose asChild>
+                <Link href={'/deals'}>
+                  <Button variant='outline' className='w-full justify-start rounded gap-2 items-center'>
+                    <PercentIcon size={16} />
+                    Ofertas
+                  </Button>
+                </Link>
+              </SheetClose>
+
+              <SheetClose asChild>
+                <Link href={"/categories"}>
+                  <Button variant='outline' className='w-full justify-start rounded gap-2 items-center'>
+                    <LayoutGridIcon size={16} />
+                    Categorias
+                  </Button>
+                </Link>
+              </SheetClose>
             </div>
-          }
-
-          <Separator />
-          <div className='py-4 flex flex-col gap-4'>
-            {status === 'unauthenticated' &&
-              <Button
-                onClick={handleLogInClick}
-                variant='outline'
-                className='w-full justify-start rounded gap-2 items-center'>
-                <LogInIcon size={16} />
-                Fazer login
-              </Button>
-            }
-
-            {status === 'authenticated' &&
-              <Button
-                onClick={handleLogOutClick}
-                variant='outline'
-                className='w-full justify-start rounded gap-2 items-center'>
-                <LogOutIcon size={16} />
-                Fazer Logout
-              </Button>
-            }
-            <SheetClose asChild>
-              <Link href={"/"}>
-                <Button variant='outline' className='w-full justify-start rounded gap-2 items-center'>
-                  <HomeIcon size={16} />
-                  Home
-                </Button>
-              </Link>
-            </SheetClose>
-
-            <SheetClose asChild>
-              <Link href={'/deals'}>
-                <Button variant='outline' className='w-full justify-start rounded gap-2 items-center'>
-                  <PercentIcon size={16} />
-                  Ofertas
-                </Button>
-              </Link>
-            </SheetClose>
-
-            <SheetClose asChild>
-              <Link href={"/categories"}>
-                <Button variant='outline' className='w-full justify-start rounded gap-2 items-center'>
-                  <LayoutGridIcon size={16} />
-                  Categorias
-                </Button>
-              </Link>
-            </SheetClose>
-          </div>
-        </SheetContent>
-      </Sheet>
-
+          </SheetContent>
+        </Sheet>
+      </div>
       <Link href={"/"}>
         <h1 className='font-semibold text-xl'>
           <span className='text-primary'>Developer</span> Store
         </h1>
       </Link>
+      
+      {/*  adicionar redirecionamento */}
+      <div className='hidden md:flex md:items-center gap-4 h-1/2'>
+        <Link href={'/'}>Home</Link>
+        <Separator orientation='vertical' className='w-[2px]' />
+        <Link href={'/categories'}>Categorias</Link>
+        <Separator orientation='vertical' className='w-[2px]' />
+        <Link href={'/deals'}>Ofertas</Link>
+      </div>
+
 
       <Sheet>
         <SheetTrigger asChild>

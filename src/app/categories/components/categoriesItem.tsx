@@ -9,9 +9,9 @@ interface CategoriesItemProps {
 const CategoriesItem = ({ category }: CategoriesItemProps) => {
   return ( 
     <Link href={`/categories/products/${category.slug}`}>
-      <div className='flex flex-col items-center justify-between w-full'>
+      <div className='flex flex-col'>
         <div
-          className='max-w-full h-[170px] w-[190px] bg-gradient-to-tr from-primary to-primary/40 rounded-t flex items-center justify-center hover:bg-gradient-to-tl'>
+          className='h-44 w-44 min-w-full bg-gradient-to-tr from-primary to-primary/40 rounded-t flex items-center justify-center hover:bg-gradient-to-tl'>
           <Image
             src={category.imageUrl}
             alt={category.name}
@@ -25,7 +25,7 @@ const CategoriesItem = ({ category }: CategoriesItemProps) => {
           />
         </div>
 
-        <div className='bg-accent py-4 rounded-b w-[190px] max-w-full'>
+        <div className='bg-accent rounded-b w-44 h-12 min-w-full flex items-center justify-center'>
           <p className='text-sm font-semibold text-center'>{category.name}</p>
         </div>
       </div>

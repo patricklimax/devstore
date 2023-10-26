@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body className={inter.className}>
-        <div className='flex flex-col h-full md:max-w-[70rem] mx-auto'>
+        <div className='flex flex-col h-full'>
           <AuthProvider>
             <CartProvider>
               <Header />

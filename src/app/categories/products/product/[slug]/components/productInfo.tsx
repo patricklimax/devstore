@@ -29,10 +29,10 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
   }
 
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col gap-4 md:bg-accent p-4 rounded h-full'>
       <p className='text-lg'>{product.name}</p>
 
-      <div className='flex items-center gap-2'>
+      <div className='flex items-center gap-4'>
         <p className='text-xl font-semibold'>
           {product.totalPrice.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
         </p>
@@ -48,7 +48,7 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
         }
       </div>
 
-      <div className='flex items-center justify-between py-8'>
+      <div className='flex items-center justify-center gap-4'>
         <div className='flex items-center gap-2'>
           <Button
             onClick={handleDecreaseQuantityClick}
@@ -72,7 +72,7 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
         </div>
         <Button
           onClick={handleAddToCartClick}
-          className='rounded uppercase font-semibold'>
+          className='rounded uppercase font-semibold flex-1 hidden'>
           Adicionar ao Carrinho
         </Button>
       </div>
@@ -84,32 +84,32 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
 
       <Button
         onClick={handleAddToCartClick}
-        className='mt-8 rounded uppercase font-semibold'>
+        className='rounded uppercase font-semibold'>
         Adicionar ao Carrinho
       </Button>
 
-      <div className='bg-accent flex justify-between items-center p-4 mt-8 rounded'>
+      <div className='bg-accent md:bg-background flex justify-between items-center p-4 rounded'>
         <div className='flex items-center gap-2'>
           <TruckIcon />
 
           <div className='flex flex-col'>
             <p className='text-xs'>
               Entrega via
-              <span className='font-semibold text-primary'>
+              <span className='font-semibold text-primary ml-1'>
                 DEVPACKET®
               </span>
             </p>
 
             <p className='text-xs'>
               Envio para
-              <span className='font-semibold text-primary'>
+              <span className='font-semibold text-primary ml-1'>
                 todo BRASIL
               </span>
             </p>
           </div>
         </div>
 
-        <div className='text-font-semibold'>
+        <div className='text-xs font-semibold'>
           Frete Grátis
         </div>
       </div>

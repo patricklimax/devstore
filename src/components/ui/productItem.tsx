@@ -10,8 +10,8 @@ interface ProductItemProps {
 const ProductItem = ({ product }: ProductItemProps) => {
   return (
     <Link href={`/categories/products/product/${product.slug}`}>
-      <div className='flex flex-col items-center justify-between w-full mb-4'>
-        <div className='bg-accent rounded-t h-[170px] w-[190px] max-w-full flex items-center justify-center relative'>
+      <div className='flex flex-col w-full'>
+        <div className='bg-accent rounded-t h-44 w-44 min-w-full flex items-center justify-center relative'>
           <Image
             src={product.imageUrls[0]}
             alt={product.name}
@@ -31,7 +31,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
           }
         </div>
 
-        <div className='max-w-full p-2 bg-popover w-[190px] rounded-b'>
+        <div className='bg-popover w-44 min-w-full h-12 rounded-b p-2'>
           <p className='text-sm truncate'>{product.name}</p>
 
           <div className='flex items-center justify-between'>
@@ -50,6 +50,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
               </p>
             }
           </div>
+
         </div>
       </div>
     </Link>
