@@ -31,7 +31,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
           }
         </div>
 
-        <div className='bg-popover w-44 min-w-full h-12 rounded-b p-2'>
+        <div className='bg-popover w-44 min-w-full h-[3.2rem] rounded-b p-2'>
           <p className='text-sm truncate'>{product.name}</p>
 
           <div className='flex items-center justify-between'>

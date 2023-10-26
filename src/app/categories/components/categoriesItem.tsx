@@ -25,7 +25,7 @@ const CategoriesItem = ({ category }: CategoriesItemProps) => {
           />
         </div>
 
-        <div className='bg-accent rounded-b w-44 h-12 min-w-full flex items-center justify-center'>
+        <div className='bg-accent rounded-b w-44 h-[3.2rem] min-w-full flex items-center justify-center'>
           <p className='text-sm font-semibold text-center'>{category.name}</p>
         </div>
       </div>
