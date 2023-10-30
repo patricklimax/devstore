@@ -1,6 +1,6 @@
 "use client"
 
-import { HomeIcon, LayoutGridIcon, LogInIcon, LogOutIcon, MenuIcon, PercentIcon, ShoppingCartIcon } from 'lucide-react';
+import { HomeIcon, LayoutGridIcon, LogInIcon, LogOutIcon, MenuIcon, PercentIcon, ShoppingCartIcon, UserIcon } from 'lucide-react';
 import { Button } from './button';
 import { Card } from './card';
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTrigger } from './sheet';
@@ -23,7 +23,7 @@ const Header = () => {
   }
 
   return (
-    <Card className='flex items-center justify-between p-4 rounded-b'>
+    <Card className='flex items-center justify-between p-4 py-6 rounded-b'>
       <div className='flex md:hidden'>
         <Sheet>
           <SheetTrigger asChild>
@@ -39,15 +39,20 @@ const Header = () => {
 
             {status === 'authenticated' && data?.user &&
               <div className='flex items-center gap-4 p-4 px-2 rounded'>
-                <Avatar>
-                  <AvatarFallback>
+                <Avatar className='rounded bg-accent p-2'>
+                  <AvatarFallback className='flex justify-center items-center text-lg w-full'>
                     {data.user.name?.[0].toUpperCase()}
                   </AvatarFallback>
 
-                  {data.user.image && (<AvatarImage src={data.user.image} />)}
+                  {data.user.image && (
+                    <AvatarImage src={data.user.image} />
+                  )}
+
                 </Avatar>
 
-                <p className='font-semibold'>{data.user.name}</p>
+                <p className='leading-none capitalize font-semibold'>
+                  Olá, <span className='text-primary'>{data.user.name?.split(' ')[0]}</span> :)
+                </p>
               </div>
             }
 
@@ -107,7 +112,7 @@ const Header = () => {
           <span className='text-primary'>Developer</span> Store
         </h1>
       </Link>
-      
+
       {/*  adicionar redirecionamento */}
       <div className='hidden md:flex md:items-center gap-4 h-1/2'>
         <Link href={'/'}>Home</Link>
@@ -118,17 +123,58 @@ const Header = () => {
       </div>
 
 
-      <Sheet>
-        <SheetTrigger asChild>
-          <Button size='icon' variant='outline' className='rounded'>
-            <ShoppingCartIcon />
-          </Button>
-        </SheetTrigger>
+      <div className='flex items-center justify-center gap-4'>
+        <div className='hidden md:flex'>
+          {status === 'authenticated' && data?.user &&
+            <Button
+              onClick={handleLogOutClick}
+              variant='outline'
+              className='p-0 pr-2 rounded gap-2'>
+              <Avatar className='rounded h-full bg-accent'>
+                <AvatarFallback className='flex justify-center items-center text-lg w-full'>
+                  {data.user.name?.[0].toUpperCase()}
+                </AvatarFallback>
 
-        <SheetContent side='right' className='w-11/12'>
-          <Cart />
-        </SheetContent>
-      </Sheet>
+                {data.user.image && (
+                  <AvatarImage src={data.user.image} />
+                )}
+              </Avatar>
+              <div className='text-[11px] flex flex-col gap-1'>
+                <p className='leading-none capitalize font-semibold'>
+                  Olá, <span className='text-primary'>{data.user.name?.split(' ')[0]}</span> :)
+                </p>
+                <p className='opacity-75 leading-none'>Sair</p>
+              </div>
+            </Button>
+          }
+
+          {status === 'unauthenticated' &&
+            <Button
+              onClick={handleLogInClick}
+              variant='outline'
+              className='p-0 pr-2 rounded gap-2'>
+              <Avatar className='rounded flex items-center justify-center bg-accent'>
+                <AvatarFallback>
+                  <UserIcon />
+                </AvatarFallback>
+              </Avatar>
+              Fazer Login
+            </Button>
+          }
+        </div>
+
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button size='icon' variant='outline' className='rounded p-2'>
+              <ShoppingCartIcon />
+            </Button>
+          </SheetTrigger>
+
+          <SheetContent side='right' className='w-11/12'>
+            <Cart />
+          </SheetContent>
+        </Sheet>
+      </div>
     </Card>
   );
 }
