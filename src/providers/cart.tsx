@@ -4,7 +4,7 @@ import { ProductWithTotalPrice } from '@/helpers/product';
 import {
   ReactNode,
   createContext,
-  useEffect,
+  // useEffect,
   useMemo,
   useState
 } from "react";
@@ -42,15 +42,15 @@ export const CartContext = createContext<ICartContext>({
 });
 
 const CartProvider = ({ children }: { children: ReactNode }) => {
-  const dataLocalStorage = JSON.parse(localStorage.getItem('devstore/cartProducts') || "[]")
+  // const dataLocalStorage = JSON.parse(localStorage.getItem('devstore/cartProducts') || "[]")
 
-  const [products, setProducts] = useState<CartProduct[]>(dataLocalStorage);
+  const [products, setProducts] = useState<CartProduct[]>([]);
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('devstore/cartProducts', JSON.stringify(products))
-    }
-  }, [products])
+  // useEffect(() => {
+  //   if (typeof window !== 'undefined') {
+  //     localStorage.setItem('devstore/cartProducts', JSON.stringify(products))
+  //   }
+  // }, [products])
 
   const subtotal = useMemo(() => {
     return products.reduce((acc, product) => {
