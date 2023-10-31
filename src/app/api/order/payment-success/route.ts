@@ -30,8 +30,7 @@ export const POST = async (request: Request) => {
     );
     const lineItems = sessionWithLineItems.line_items;
 
-    // criar pedido
-    await prismaClient
+    //TODO: criar pedido
   }
 
   return NextResponse.json({received: true})
