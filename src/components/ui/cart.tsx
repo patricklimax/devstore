@@ -11,14 +11,26 @@ import Link from 'next/link';
 import { SheetClose } from './sheet';
 import { createCheckout } from '@/actions/checkout';
 import { loadStripe } from '@stripe/stripe-js';
+import { createOrder } from '@/actions/order';
+import { useSession } from 'next-auth/react';
 
 const Cart = () => {
+  const {data} = useSession()
   const { products, subtotal, total, totalDiscount } = useContext(CartContext);
 
   const hadleFinishPurchaseClick = async () => {
+    if (!data?.user) {
+      //todo: redirecionar para login
+      return
+    }
+
+    await createOrder(products, (data?.user as any).id)
+
     const chechout = await createCheckout(products)
 
     const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY)
+
+    //criar pedido no banco
 
     stripe?.redirectToCheckout({
       sessionId: chechout.id
